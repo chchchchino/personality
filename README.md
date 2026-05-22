@@ -54,6 +54,22 @@ Open **http://localhost:4200**, type a personality (any famous person or charact
 
 The dev server proxies `/api/*` to `http://localhost:8000`, so you do not need extra CORS setup for local development.
 
+## Docker
+
+Build the combined image from the repository root:
+
+```bash
+docker build -t personality .
+```
+
+Run it with your OpenAI key injected as an environment variable:
+
+```bash
+docker run --rm -p 4200:4200 -e OPENAI_API_KEY="$OPENAI_API_KEY" personality
+```
+
+Only the Angular app is published on `http://localhost:4200`. The Python API stays internal to the container on `127.0.0.1:8000`, and the client reaches it through the Angular proxy.
+
 ## Project layout
 
 ```
