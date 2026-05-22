@@ -25,6 +25,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:4200",
         "http://127.0.0.1:4200",
+        "http://personality.fusiondeveloper.com",
+        "https://personality.fusiondeveloper.com"
     ],
     allow_credentials=True,
     allow_methods=["*"],
