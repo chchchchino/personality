@@ -16,7 +16,10 @@ RUN apt-get update \
         python3-venv \
     && rm -rf /var/lib/apt/lists/*
 
-RUN python3 -m pip install uv
+RUN python3 -m venv /opt/uv-venv \
+    && /opt/uv-venv/bin/pip install --upgrade pip \
+    && /opt/uv-venv/bin/pip install uv \
+    && ln -s /opt/uv-venv/bin/uv /usr/local/bin/uv
 
 WORKDIR /app
 
