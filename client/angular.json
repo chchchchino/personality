@@ -29,8 +29,7 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              "src/favicon.ico"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -42,8 +41,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "800kB",
-                  "maximumError": "1.5MB"
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
                 },
                 {
                   "type": "anyComponentStyle",
