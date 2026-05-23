@@ -2,10 +2,9 @@ module.exports = {
   apps: [
     {
       name: 'personality-server',
-      script: '/opt/uv-venv/bin/uv',
-      args: 'run uvicorn personality_server.app:app --host 127.0.0.1 --port 8000',
+      script: '/app/start-server.sh',
       cwd: '/app/server',
-      interpreter: 'none',
+      interpreter: 'bash',
     },
     {
       name: 'personality-client',

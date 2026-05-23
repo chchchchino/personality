@@ -47,12 +47,16 @@ function serveFile(res, filePath) {
 }
 
 function proxyApiRequest(req, res) {
+  const [pathname, search = ''] = req.url.split('?');
+  const upstreamPath = pathname.replace(/^\/api(?=\/|$)/, '') || '/';
+  const targetPath = `${upstreamPath}${search ? `?${search}` : ''}`;
+
   const proxyReq = http.request(
     {
       hostname: API_TARGET_HOST,
       port: API_TARGET_PORT,
       method: req.method,
-      path: req.url,
+      path: targetPath,
       headers: {
         ...req.headers,
         host: `${API_TARGET_HOST}:${API_TARGET_PORT}`,
@@ -90,7 +94,7 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (req.url.startsWith('/api/')) {
+  if (req.url.startsWith('/api')) {
     proxyApiRequest(req, res);
     return;
   }

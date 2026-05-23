@@ -37,11 +37,12 @@ RUN cd /app/client && npm ci
 COPY client ./client
 COPY server ./server
 COPY ecosystem.config.cjs /app/ecosystem.config.cjs
+COPY start-server.sh /app/start-server.sh
 COPY docker-entrypoint.sh /app/docker-entrypoint.sh
 
 RUN npm install -g pm2 \
     && cd /app/client && npm run build \
-    && chmod +x /app/docker-entrypoint.sh
+    && chmod +x /app/docker-entrypoint.sh /app/start-server.sh
 
 EXPOSE 4200
 
